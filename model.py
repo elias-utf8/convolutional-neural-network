@@ -5,22 +5,24 @@ Date : 02/02/2025
 """
 
 import tensorflow as tf
-from tensorflow.keras.datasets import cifar10
+from tensorflow.keras.datasets import cifar100
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Conv2D, MaxPooling2D, Flatten, Dense, Dropout
 from tensorflow.keras.utils import to_categorical
 import numpy as np
 import matplotlib.pyplot as plt
 
-(X_train, y_train), (X_test, y_test) = cifar10.load_data()
+# Charger le jeu de données CIFAR-100
+(X_train, y_train), (X_test, y_test) = cifar100.load_data()
 X_train = X_train.astype('float32') / 255.0
 X_test = X_test.astype('float32') / 255.0
 
-y_train = to_categorical(y_train, 10)
-y_test = to_categorical(y_test, 10)
+# Convertir les étiquettes en format one-hot encoding
+y_train = to_categorical(y_train, 100)
+y_test = to_categorical(y_test, 100)
 
 image_size = (32, 32)
-num_classes = 10
+num_classes = 100
 
 model = Sequential([
     Conv2D(32, (3, 3), activation='relu', input_shape=(image_size[0], image_size[1], 3)),
@@ -89,10 +91,22 @@ def predict_image(image):
     prediction = model.predict(image)
     return prediction
 
-# Classes de CIFAR-10
-cifar10_classes = [
-    'avion', 'automobile', 'oiseau', 'chat', 'cerf',
-    'chien', 'grenouille', 'cheval', 'bateau', 'camion'
+cifar100_classes = [
+    'apple', 'aquarium_fish', 'baby', 'bear', 'beaver', 'bed', 'bee', 'beetle', 
+    'bicycle', 'bottle', 'bowl', 'boy', 'bridge', 'bus', 'butterfly', 'camel', 
+    'can', 'castle', 'caterpillar', 'cattle', 'chair', 'chimpanzee', 'clock', 
+    'cloud', 'cockroach', 'couch', 'crab', 'crocodile', 'cup', 'dinosaur', 
+    'dolphin', 'elephant', 'flatfish', 'forest', 'fox', 'girl', 'hamster', 
+    'house', 'kangaroo', 'keyboard', 'lamp', 'lawn_mower', 'leopard', 'lion',
+    'lizard', 'lobster', 'man', 'maple_tree', 'motorcycle', 'mountain', 'mouse',
+    'mushroom', 'oak_tree', 'orange', 'orchid', 'otter', 'palm_tree', 'pear',
+    'pickup_truck', 'pine_tree', 'plain', 'plate', 'poppy', 'porcupine',
+    'possum', 'rabbit', 'raccoon', 'ray', 'road', 'rocket', 'rose',
+    'sea', 'seal', 'shark', 'shrew', 'skunk', 'skyscraper', 'snail', 'snake',
+    'spider', 'squirrel', 'streetcar', 'sunflower', 'sweet_pepper', 'table',
+    'tank', 'telephone', 'television', 'tiger', 'tractor', 'train', 'trout',
+    'tulip', 'turtle', 'wardrobe', 'whale', 'willow_tree', 'wolf', 'woman',
+    'worm'
 ]
 
 model.save('walter.h5')

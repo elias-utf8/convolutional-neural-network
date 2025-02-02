@@ -4,9 +4,22 @@ from tensorflow.keras.preprocessing import image
 
 model = tf.keras.models.load_model('walter.h5')
 
-cifar10_classes = [
-    'avion', 'automobile', 'oiseau', 'chat', 'cerf',
-    'chien', 'grenouille', 'cheval', 'bateau', 'camion'
+cifar100_classes = [
+    'apple', 'aquarium_fish', 'baby', 'bear', 'beaver', 'bed', 'bee', 'beetle', 
+    'bicycle', 'bottle', 'bowl', 'boy', 'bridge', 'bus', 'butterfly', 'camel', 
+    'can', 'castle', 'caterpillar', 'cattle', 'chair', 'chimpanzee', 'clock', 
+    'cloud', 'cockroach', 'couch', 'crab', 'crocodile', 'cup', 'dinosaur', 
+    'dolphin', 'elephant', 'flatfish', 'forest', 'fox', 'girl', 'hamster', 
+    'house', 'kangaroo', 'keyboard', 'lamp', 'lawn_mower', 'leopard', 'lion',
+    'lizard', 'lobster', 'man', 'maple_tree', 'motorcycle', 'mountain', 'mouse',
+    'mushroom', 'oak_tree', 'orange', 'orchid', 'otter', 'palm_tree', 'pear',
+    'pickup_truck', 'pine_tree', 'plain', 'plate', 'poppy', 'porcupine',
+    'possum', 'rabbit', 'raccoon', 'ray', 'road', 'rocket', 'rose',
+    'sea', 'seal', 'shark', 'shrew', 'skunk', 'skyscraper', 'snail', 'snake',
+    'spider', 'squirrel', 'streetcar', 'sunflower', 'sweet_pepper', 'table',
+    'tank', 'telephone', 'television', 'tiger', 'tractor', 'train', 'trout',
+    'tulip', 'turtle', 'wardrobe', 'whale', 'willow_tree', 'wolf', 'woman',
+    'worm'
 ]
 
 def preprocess_image(image_path, target_size=(32, 32)):
@@ -20,11 +33,11 @@ def predict_image(image_path):
     img_array = preprocess_image(image_path)
     predictions = model.predict(img_array)
     predicted_class_index = np.argmax(predictions, axis=1)[0]
-    predicted_class = cifar10_classes[predicted_class_index]
+    predicted_class = cifar100_classes[predicted_class_index]
     confidence = predictions[0][predicted_class_index]
     return predicted_class, confidence
 
-image_path = 'avion.png'
+image_path = 'tests/c15.jpg'
 
 predicted_class, confidence = predict_image(image_path)
 print(f"Je pense que cette image est : {predicted_class} avec une confiance de {confidence:.2f}")
