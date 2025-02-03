@@ -17,7 +17,6 @@ import matplotlib.pyplot as plt
 X_train = X_train.astype('float32') / 255.0
 X_test = X_test.astype('float32') / 255.0
 
-# Convertir les étiquettes en format one-hot encoding
 y_train = to_categorical(y_train, 100)
 y_test = to_categorical(y_test, 100)
 
