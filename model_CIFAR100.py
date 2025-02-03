@@ -7,13 +7,12 @@ Date : 02/02/2025
 import tensorflow as tf
 from tensorflow.keras.datasets import cifar100
 from tensorflow.keras.models import Sequential
-from tensorflow.keras.layers import Conv2D, MaxPooling2D, Flatten, Dense, Dropout
+from tensorflow.keras.layers import Conv2D, MaxPooling2D, Flatten, Dense, Dropout, BatchNormalization
 from tensorflow.keras.utils import to_categorical
 import numpy as np
 import matplotlib.pyplot as plt
 
-# Charger le jeu de données CIFAR-100
-(X_train, y_train), (X_test, y_test) = cifar100.load_data()
+(X_train, y_train), (X_test, y_test) = cifar100.load_data(label_mode='fine')
 X_train = X_train.astype('float32') / 255.0
 X_test = X_test.astype('float32') / 255.0
 
@@ -23,15 +22,32 @@ y_test = to_categorical(y_test, 100)
 image_size = (32, 32)
 num_classes = 100
 
+# Construction du modèle
 model = Sequential([
-    Conv2D(32, (3, 3), activation='relu', input_shape=(image_size[0], image_size[1], 3)),
+    Conv2D(32, (3, 3), activation='relu', padding='same', input_shape=(image_size[0], image_size[1], 3)),
+    BatchNormalization(),
+    Conv2D(32, (3, 3), activation='relu', padding='same'),
+    BatchNormalization(),
     MaxPooling2D(pool_size=(2, 2)),
-    Conv2D(64, (3, 3), activation='relu'),
+    Dropout(0.25),
+
+    Conv2D(64, (3, 3), activation='relu', padding='same'),
+    BatchNormalization(),
+    Conv2D(64, (3, 3), activation='relu', padding='same'),
+    BatchNormalization(),
     MaxPooling2D(pool_size=(2, 2)),
-    Conv2D(128, (3, 3), activation='relu'),
+    Dropout(0.25),
+
+    Conv2D(128, (3, 3), activation='relu', padding='same'),
+    BatchNormalization(),
+    Conv2D(128, (3, 3), activation='relu', padding='same'),
+    BatchNormalization(),
     MaxPooling2D(pool_size=(2, 2)),
+    Dropout(0.25),
+
     Flatten(),
-    Dense(128, activation='relu'),
+    Dense(512, activation='relu'),
+    BatchNormalization(),
     Dropout(0.5),
     Dense(num_classes, activation='softmax')
 ])
@@ -44,15 +60,15 @@ model.compile(
 
 early_stopping = tf.keras.callbacks.EarlyStopping(
     monitor='val_loss',
-    patience=5,
+    patience=10,
     restore_best_weights=True
 )
 
 # Entraînement du modèle
 history = model.fit(
     X_train, y_train,
-    batch_size=32,
-    epochs=50,
+    batch_size=64,
+    epochs=100,
     validation_split=0.2,  
     callbacks=[early_stopping]
 )
@@ -108,4 +124,4 @@ cifar100_classes = [
     'worm', 'truck'
 ]
 
-model.save('cifar100_model.h5')
+model.save('models/cifar100_model.h5')
