@@ -37,7 +37,7 @@ def predict_image(image_path):
     confidence = predictions[0][predicted_class_index]
     return predicted_class, confidence
 
-image_path = 'tests/homme.jpg'
+image_path = 'tests/avion.png'
 
 predicted_class, confidence = predict_image(image_path)
 print(f"Je pense que cette image est : {predicted_class} avec une confiance de {confidence:.2f}")
