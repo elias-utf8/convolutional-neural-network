@@ -1,5 +1,5 @@
 """
-Réseau de neurones convolutifs - modèle rudimentaire 
+Réseau de neurones convolutifs - modèle rudimentaire avec le dataset CIFAR100
 Auteur : Elias GAUTHIER
 Date : 02/02/2025
 """
@@ -106,7 +106,7 @@ cifar100_classes = [
     'spider', 'squirrel', 'streetcar', 'sunflower', 'sweet_pepper', 'table',
     'tank', 'telephone', 'television', 'tiger', 'tractor', 'train', 'trout',
     'tulip', 'turtle', 'wardrobe', 'whale', 'willow_tree', 'wolf', 'woman',
-    'worm'
+    'worm', 'truck'
 ]
 
-model.save('walter.h5')
+model.save('cifar100_model.h5')

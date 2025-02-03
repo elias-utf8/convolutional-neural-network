@@ -1,0 +1,98 @@
+"""
+Réseau de neurones convolutifs - modèle rudimentaire 
+Auteur : Elias GAUTHIER
+Date : 02/02/2025
+"""
+
+import tensorflow as tf
+from tensorflow.keras.datasets import cifar10
+from tensorflow.keras.models import Sequential
+from tensorflow.keras.layers import Conv2D, MaxPooling2D, Flatten, Dense, Dropout
+from tensorflow.keras.utils import to_categorical
+import numpy as np
+import matplotlib.pyplot as plt
+
+(X_train, y_train), (X_test, y_test) = cifar10.load_data()
+X_train = X_train.astype('float32') / 255.0
+X_test = X_test.astype('float32') / 255.0
+
+y_train = to_categorical(y_train, 10)
+y_test = to_categorical(y_test, 10)
+
+image_size = (32, 32)
+num_classes = 10
+
+model = Sequential([
+    Conv2D(32, (3, 3), activation='relu', input_shape=(image_size[0], image_size[1], 3)),
+    MaxPooling2D(pool_size=(2, 2)),
+    Conv2D(64, (3, 3), activation='relu'),
+    MaxPooling2D(pool_size=(2, 2)),
+    Conv2D(128, (3, 3), activation='relu'),
+    MaxPooling2D(pool_size=(2, 2)),
+    Flatten(),
+    Dense(128, activation='relu'),
+    Dropout(0.5),
+    Dense(num_classes, activation='softmax')
+])
+
+model.compile(
+    optimizer='adam',
+    loss='categorical_crossentropy',
+    metrics=['accuracy']
+)
+
+early_stopping = tf.keras.callbacks.EarlyStopping(
+    monitor='val_loss',
+    patience=5,
+    restore_best_weights=True
+)
+
+# Entraînement du modèle
+history = model.fit(
+    X_train, y_train,
+    batch_size=32,
+    epochs=50,
+    validation_split=0.2,  
+    callbacks=[early_stopping]
+)
+
+# Évaluation du modèle
+test_loss, test_accuracy = model.evaluate(X_test, y_test)
+print(f'\nPrécision sur le jeu de test : {test_accuracy:.4f}')
+
+# Visualisation des résultats
+plt.figure(figsize=(12, 4))
+
+plt.subplot(1, 2, 1)
+plt.plot(history.history['accuracy'], label='Précision (entraînement)')
+plt.plot(history.history['val_accuracy'], label='Précision (validation)')
+plt.title('Évolution de la précision')
+plt.xlabel('Époque')
+plt.ylabel('Précision')
+plt.legend()
+
+plt.subplot(1, 2, 2)
+plt.plot(history.history['loss'], label='Perte (entraînement)')
+plt.plot(history.history['val_loss'], label='Perte (validation)')
+plt.title('Évolution de la perte')
+plt.xlabel('Époque')
+plt.ylabel('Perte')
+plt.legend()
+
+plt.tight_layout()
+plt.show()
+
+def predict_image(image):
+    image = tf.image.resize(image, image_size)
+    image = image / 255.0
+    image = np.expand_dims(image, axis=0)
+    prediction = model.predict(image)
+    return prediction
+
+# Classes de CIFAR-10
+cifar10_classes = [
+    'avion', 'automobile', 'oiseau', 'chat', 'cerf',
+    'chien', 'grenouille', 'cheval', 'bateau', 'camion'
+]
+
+model.save('cifar10_model.h5')
