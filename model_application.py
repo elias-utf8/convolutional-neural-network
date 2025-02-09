@@ -3,7 +3,7 @@ import numpy as np
 from tensorflow.keras.preprocessing import image
 
 model = tf.keras.models.load_model('models/cifar100_model.h5')
-model.summary();
+model.summary()
 cifar10_classes = [
     'avion', 'automobile', 'oiseau', 'chat', 'cerf',
     'chien', 'grenouille', 'cheval', 'bateau', 'camion'

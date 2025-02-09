@@ -24,7 +24,7 @@ def predict_image(image_path, model, class_names):
 
     return predicted_class_name
 
-image_path = 'tests/burger.jpg'  
+image_path = 'tests/chat.jpg'  
 predicted_class = predict_image(image_path, model, class_names)
 print(f"La classe prédite est : {predicted_class}")
 
