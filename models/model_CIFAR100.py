@@ -63,7 +63,6 @@ early_stopping = tf.keras.callbacks.EarlyStopping(
     restore_best_weights=True
 )
 
-# Entraînement du modèle
 history = model.fit(
     X_train, y_train,
     batch_size=64,

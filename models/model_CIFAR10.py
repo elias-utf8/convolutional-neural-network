@@ -48,7 +48,6 @@ early_stopping = tf.keras.callbacks.EarlyStopping(
     restore_best_weights=True
 )
 
-# Entraînement du modèle
 history = model.fit(
     X_train, y_train,
     batch_size=32,
@@ -60,7 +59,6 @@ history = model.fit(
 test_loss, test_accuracy = model.evaluate(X_test, y_test)
 print(f'\nPrécision sur le jeu de test : {test_accuracy:.4f}')
 
-# Visualisation des résultats
 plt.figure(figsize=(12, 4))
 
 plt.subplot(1, 2, 1)

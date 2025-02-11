@@ -28,10 +28,8 @@ def prepare_data(example):
         label = tf.one_hot(0, num_classes)
     return image, label
 
-# Prepare the dataset
 train_ds = dataset.map(prepare_data).batch(32).prefetch(tf.data.AUTOTUNE)
 
-# Define the model
 model = Sequential([
     Conv2D(32, (3, 3), activation='relu', input_shape=(32, 32, 3)),
     MaxPooling2D(pool_size=(2, 2)),
@@ -57,12 +55,10 @@ early_stopping = tf.keras.callbacks.EarlyStopping(
     restore_best_weights=True
 )
 
-# Split the dataset
 train_size = int(0.8 * len(list(train_ds)))
 val_ds = train_ds.skip(train_size)
 train_ds = train_ds.take(train_size)
 
-# Train the model
 history = model.fit(
     train_ds,
     validation_data=val_ds,
@@ -70,7 +66,6 @@ history = model.fit(
     callbacks=[early_stopping]
 )
 
-# Plot training history
 plt.figure(figsize=(12, 4))
 plt.subplot(1, 2, 1)
 plt.plot(history.history['accuracy'], label='Précision (entraînement)')

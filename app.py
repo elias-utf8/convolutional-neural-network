@@ -1,3 +1,31 @@
+"""
+Application de Prédiction d'Images Utilisant des Réseaux de Neurones Convolutifs
+
+Ce programme est une application graphique développée en Python utilisant la bibliothèque CustomTkinter pour créer une interface utilisateur intuitive.
+L'application permet à l'utilisateur de sélectionner un modèle de réseau de neurones convolutifs (CNN) parmi plusieurs options (CIFAR10, CIFAR100, COCO, MobileNet)
+et de charger une image pour effectuer une prédiction sur cette image.
+
+MobilNet étant un modèle pré-entrainé il est très certainement le plus performant. 
+
+Fonctionnalités principales :
+- Sélection de modèles de CNN via un menu déroulant.
+- Chargement et affichage d'images à partir du système de fichiers.
+- Prédiction de la classe de l'image chargée en utilisant le modèle sélectionné.
+- Affichage des résultats de la prédiction avec la classe prédite et le niveau de confiance.
+
+Modules utilisés :
+- customtkinter : Bibliothèque pour créer des interfaces graphiques modernes et personnalisées.
+- CTkMessagebox : Boîte de dialogue personnalisée pour afficher des messages à l'utilisateur.
+- filedialog : Module pour ouvrir des boîtes de dialogue de sélection de fichiers.
+- CTkImage : Classe pour gérer les images dans CustomTkinter.
+- PIL.Image : Module de la bibliothèque Pillow pour manipuler les images.
+- tempfile : Module pour créer des fichiers temporaires.
+
+Auteur : Elias GAUTHIER
+Date : 11/02/2025
+Version : 1.0 
+"""
+
 from predict.CIFAR10 import CIFAR10Predictor
 from predict.CIFAR100 import CIFAR100Predictor
 from predict.COCO import COCOPredictor
@@ -15,7 +43,7 @@ class CNN_App:
         ctk.set_appearance_mode("dark")
         ctk.set_default_color_theme("blue")
         self.root = ctk.CTk()
-        self.root.title("Convolutiv Neural Network")
+        self.root.title("Convolutiv Neural Network - Elias GAUTHIER 2025")
         self.root.geometry("900x600")
         self.root.resizable(True, False)
         self.dataset_var = ctk.StringVar(value="Select Model")
@@ -162,7 +190,7 @@ class CNN_App:
 
             with tempfile.NamedTemporaryFile(suffix=".jpg", delete=False) as temp_img:
                 self.img.save(temp_img.name)
-                predicted_class, confidence = self.predictor.predict_image(temp_img.name)  # Passer le chemin
+                predicted_class, confidence = self.predictor.predict_image(temp_img.name)
            
             self.ChangerTexte(f"Image prédite : {predicted_class}, confiance : {confidence}")
             self.label_prediction.configure(text=predicted_class+' '+str(confidence)+'%')
