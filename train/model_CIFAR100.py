@@ -1,9 +1,9 @@
 """
-Réseau de neurones convolutifs - modèle rudimentaire avec le dataset CIFAR100
+Réseau de neurones convolutifs - modèle rudimentaire de classification d'image
+utilisant le dataset CIFAR100
 Auteur : Elias GAUTHIER
 Date : 02/02/2025
 """
-
 import tensorflow as tf
 from tensorflow.keras.datasets import cifar100
 from tensorflow.keras.models import Sequential
@@ -22,7 +22,6 @@ y_test = to_categorical(y_test, 100)
 image_size = (32, 32)
 num_classes = 100
 
-# Construction du modèle
 model = Sequential([
     Conv2D(32, (3, 3), activation='relu', padding='same', input_shape=(image_size[0], image_size[1], 3)),
     BatchNormalization(),
@@ -73,11 +72,9 @@ history = model.fit(
     callbacks=[early_stopping]
 )
 
-# Évaluation du modèle
 test_loss, test_accuracy = model.evaluate(X_test, y_test)
 print(f'\nPrécision sur le jeu de test : {test_accuracy:.4f}')
 
-# Visualisation des résultats
 plt.figure(figsize=(12, 4))
 
 plt.subplot(1, 2, 1)

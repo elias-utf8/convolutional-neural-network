@@ -1,16 +1,16 @@
+"""
+Réseau de neurones convolutifs - modèle rudimentaire de classification d'image
+utilisant le dataset COCO
+Auteur : Elias GAUTHIER
+Date : 02/02/2025
+"""
+
 import tensorflow as tf
 import tensorflow_datasets as tfds
 from tensorflow.keras.models import Sequential
 from tensorflow.keras.layers import Conv2D, MaxPooling2D, Flatten, Dense, Dropout
 import matplotlib.pyplot as plt
 
-"""
-Réseau de neurones convolutifs - modèle rudimentaire avec le dataset COCO
-Auteur : Elias GAUTHIER
-Date : 02/02/2025
-"""
-
-# Load the dataset
 dataset, info = tfds.load('coco/2017', 
                          split='train',
                          shuffle_files=True,
@@ -22,11 +22,10 @@ class_names = info.features['objects']['label'].names
 def prepare_data(example):
     image = tf.cast(example['image'], tf.float32) / 255.0
     image = tf.image.resize(image, (32, 32))
-    # Check if the label exists and is not empty
     if tf.size(example['objects']['label']) > 0:
         label = tf.one_hot(example['objects']['label'][0], num_classes)
     else:
-        label = tf.one_hot(0, num_classes)  # Default label if none exists
+        label = tf.one_hot(0, num_classes)
     return image, label
 
 # Prepare the dataset
@@ -91,5 +90,4 @@ plt.legend()
 plt.tight_layout()
 plt.show()
 
-# Save the model
 model.save('models/coco_model.h5')

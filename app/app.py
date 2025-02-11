@@ -1,12 +1,14 @@
 from CIFAR10 import CIFAR10Predictor
+from CIFAR100 import CIFAR100Predictor
+from COCO import COCOPredictor
+from MOBILNET import MobileNetPredictor
 
 import customtkinter as ctk
 from CTkMessagebox import CTkMessagebox
 from tkinter import filedialog
 from customtkinter import CTkImage
 from PIL import Image
-
-
+import tempfile
 
 class CNN_App:
     def __init__(self):
@@ -78,14 +80,24 @@ class CNN_App:
         separator = ctk.CTkFrame(main_frame, width=2, fg_color="white")
         separator.pack(side="left", fill="y", padx=0)
 
-        # Label pour afficher l'image
+        """------ Label image ------"""
         self.label_image = ctk.CTkLabel(
             master=control_frame,
             text="???",
             width=200,
             height=200
         )
-        self.label_image.pack(padx=30, pady=50, side="left")
+        self.label_image.pack(padx=30, pady=10, side="top")
+
+        """----- Label prédiction -----"""
+        self.label_prediction = ctk.CTkLabel(
+            master=control_frame,
+            text="",
+            width=200,
+            height=40,
+            font=("Arial", 14, "bold")
+        )
+        self.label_prediction.pack(padx=30, pady=10, side="top")
 
     def ChangerTexte(self, text):
         self.text_area.configure(state="normal")
@@ -93,19 +105,26 @@ class CNN_App:
         self.text_area.configure(state="disabled")
 
     def Charger_CIFAR10(self):
+        self.predictor = None
         self.predictor = CIFAR10Predictor()
         self.ChangerTexte(self.predictor.summary())
 
-
     def Charger_CIFAR100(self):
-        pass
+        self.predictor = None
+        self.predictor = CIFAR100Predictor()
+        self.ChangerTexte(self.predictor.summary())
+        
 
     def Charger_COCO(self):
-        pass
+        self.predictor = None
+        self.predictor = COCOPredictor()
+        self.ChangerTexte(self.predictor.summary())
 
     def ChargerMobilNET(self):
-        pass
-
+        self.predictor = None
+        self.predictor = MobileNetPredictor()
+        self.ChangerTexte(self.predictor.summary())
+        
     def ChoisirModele(self):
         selected_dataset = self.dataset_var.get()
         if selected_dataset == "Select Model":
@@ -128,10 +147,8 @@ class CNN_App:
         elif selected_dataset == "MobilNet":
             self.ChargerMobilNET()
 
-
-
     def ChargerImage(self):
-        if self.model_load==False:
+        if not self.model_load:
             CTkMessagebox(title="Information", message="Veuillez choisir un modèle avant de charger une image !")
             return
 
@@ -139,13 +156,16 @@ class CNN_App:
         if filepath:
             self.img = Image.open(filepath)  
             img_resized = self.img.resize((200, 200), Image.Resampling.LANCZOS)
-
             self.image_ctk = CTkImage(light_image=img_resized, size=(200, 200))
-            
             self.label_image.configure(image=self.image_ctk, text="")  
             self.ChangerTexte("Image chargée avec succès.")
-            predicted_class, confidence = self.predictor.predict_image(self.img)
-            self.ChangerTexte("Image prédite :"+predicted_class+" ,confiance:"+confidence)
+
+            with tempfile.NamedTemporaryFile(suffix=".jpg", delete=False) as temp_img:
+                self.img.save(temp_img.name)
+                predicted_class, confidence = self.predictor.predict_image(temp_img.name)  # Passer le chemin
+           
+            self.ChangerTexte(f"Image prédite : {predicted_class}, confiance : {confidence}")
+            self.label_prediction.configure(text=predicted_class+' '+str(confidence)+'%')
 
     def run(self):
         self.root.mainloop()

@@ -35,4 +35,4 @@ class CIFAR10Predictor:
 if __name__ == "__main__":
     predictor = CIFAR10Predictor()
     predicted_class, confidence = predictor.predict_image('path_to_your_image.jpg')
-    print(f"Je pense que cette image est : {predicted_class} avec une confiance de {confidence:.2f}")
+    #print(f"Je pense que cette image est : {predicted_class} avec une confiance de {confidence:.2f}")

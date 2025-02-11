@@ -1,5 +1,6 @@
 """
-Réseau de neurones convolutifs - modèle rudimentaire 
+Réseau de neurones convolutifs - modèle rudimentaire de classification d'image
+utilisant le dataset CIFAR10
 Auteur : Elias GAUTHIER
 Date : 02/02/2025
 """
@@ -56,7 +57,6 @@ history = model.fit(
     callbacks=[early_stopping]
 )
 
-# Évaluation du modèle
 test_loss, test_accuracy = model.evaluate(X_test, y_test)
 print(f'\nPrécision sur le jeu de test : {test_accuracy:.4f}')
 
@@ -89,7 +89,6 @@ def predict_image(image):
     prediction = model.predict(image)
     return prediction
 
-# Classes de CIFAR-10
 cifar10_classes = [
     'avion', 'automobile', 'oiseau', 'chat', 'cerf',
     'chien', 'grenouille', 'cheval', 'bateau', 'camion'
