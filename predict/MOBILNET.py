@@ -4,6 +4,8 @@ from tensorflow.keras.applications.mobilenet_v2 import MobileNetV2, preprocess_i
 from tensorflow.keras.preprocessing import image
 import io
 import sys
+from pathlib import Path
+
 
 class MobileNetPredictor:
     def __init__(self):
@@ -15,7 +17,6 @@ class MobileNetPredictor:
         return buffer.getvalue()
     
     def preprocess_image(self, image_path, target_size=(224, 224)):
-        # Chargement et prétraitement de l'image
         img = image.load_img(image_path, target_size=target_size)
         img_array = image.img_to_array(img)
         img_array = np.expand_dims(img_array, axis=0)
@@ -40,4 +41,3 @@ class MobileNetPredictor:
 
 if __name__ == "__main__":
     predictor = MobileNetPredictor()
-    predicted_class, confidence = predictor.predict_image('path_to_your_image.jpg')

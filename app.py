@@ -1,7 +1,7 @@
-from CIFAR10 import CIFAR10Predictor
-from CIFAR100 import CIFAR100Predictor
-from COCO import COCOPredictor
-from MOBILNET import MobileNetPredictor
+from predict.CIFAR10 import CIFAR10Predictor
+from predict.CIFAR100 import CIFAR100Predictor
+from predict.COCO import COCOPredictor
+from predict.MOBILNET import MobileNetPredictor
 
 import customtkinter as ctk
 from CTkMessagebox import CTkMessagebox
@@ -16,8 +16,8 @@ class CNN_App:
         ctk.set_default_color_theme("blue")
         self.root = ctk.CTk()
         self.root.title("Convolutiv Neural Network")
-        self.root.geometry("900x500")
-        self.root.resizable(False, False)
+        self.root.geometry("900x600")
+        self.root.resizable(True, False)
         self.dataset_var = ctk.StringVar(value="Select Model")
 
         self.model_load = False
