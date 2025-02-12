@@ -1,5 +1,5 @@
 ![Version](https://img.shields.io/github/v/tag/elias-utf8/convolutional-neural-network?label=version&color=blue)
-
+![Commit](https://img.shields.io/gitea/last-commit/:elias-utf8/:convolutional-neural-network)
 # Réseau neuronal convolutif de reconaissance d'images 
 ![Aperçu de l'application](screenshots/app_screen.png)
 
