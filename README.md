@@ -1,4 +1,5 @@
 ![Version](https://img.shields.io/github/v/tag/elias-utf8/convolutional-neural-network?label=version&color=blue)
+
 Attention : la documentation du projet est encore en cours
 # Réseau neuronal convolutif de reconaissance d'images 
 ![Aperçu de l'application](screenshots/app_screen.png)
@@ -31,7 +32,7 @@ Un CNN est composé de plusieurs types de couches :
 Afin d'obtenir un modèle de CNN fonctionnel il est nécessaire d'entrainer ce dernier sur de grand jeux de données nommées datasets. On peut trouver des datasets sur internet tel que sur ![Kaggle](https://www.kaggle.com/datasets).
 
 Les programmes d'entrainements des modèles sont dans `/models` et les modèles entrainés sont dans `/trained_models`
+
 ---
 ## Implémentation
 Dans mon cas, j'ai entrainé 3 modèles différent que j'ai nommées avec le dataset sur lequel ils se sont exercés. Soit, CIFAR10, CIFAR100 ainsi que COCO. 
->>>>>>> Stashed changes
