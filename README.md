@@ -1,6 +1,6 @@
 ![Version](https://img.shields.io/github/v/tag/elias-utf8/convolutional-neural-network?label=version&color=blue)
 
-![Tensorflow](https://upload.wikimedia.org/wikipedia/commons/a/ab/TensorFlow_logo.svg) | ![Python](https://w7.pngwing.com/pngs/140/948/png-transparent-blue-and-yellow-logo-python-logo-programmer-fierce-python-s-cdr-angle-text-thumbnail.png)
+![Tensorflow](https://upload.wikimedia.org/wikipedia/commons/a/ab/TensorFlow_logo.svg) | ![Python](https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Python-logo-notext.svg/1869px-Python-logo-notext.svg.png)
 
 <br>
 Attention : la documentation du projet est encore en cours
