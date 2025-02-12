@@ -74,6 +74,11 @@ Vous pouvez constituer votre propre *dataset*, mais cela est une tâche assez lo
 N'oubliez pas que **plus de données = meilleure efficacité de prédiction**.
 Grâce à TensorFlow, on peut accéder à des *datasets* directement via l'importation de la bibliothèque.
 
+Exemple pour le dataset [CIFAR10](https://www.cs.toronto.edu/~kriz/cifar.html) : 
+```py
+from tensorflow.keras.datasets import cifar10
+```
+
 ---
 ## Implémentation
 Dans mon cas, j'ai entraîné trois modèles différents que j'ai nommés d'après le *dataset* sur lequel ils ont été entraînés :
