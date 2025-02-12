@@ -1,5 +1,5 @@
 ![Version](https://img.shields.io/github/v/tag/elias-utf8/convolutional-neural-network?label=version&color=blue)
-# Réseau neuronal convolutif de reconaissance d'images
+# Réseau neuronal convolutif de reconnaissance d'images
 
 <div align="center">
   <img src="https://upload.wikimedia.org/wikipedia/commons/a/ab/TensorFlow_logo.svg" width="350" style="vertical-align: middle" />
@@ -7,31 +7,30 @@
 
 <br>
 
-*Attention : la documentation du projet est encore en cours*
+*La documentation du projet est encore en cours.*
+*Ceci n'est qu'un survol du vaste monde du ML et des CNN. Toutes ces informations sont disponibles sur Internet.*
 
 ![Aperçu de l'application](screenshots/app_screen.png)
 
 ## Introduction aux CNN
 
-Les réseaux de neurones convolutifs (CNN) sont une classe de réseaux de neurones artificiels principalement utilisés pour l'analyse d'images. Ils sont inspirés par le cortex visuel des animaux et sont particulièrement efficaces pour des tâches telles que la reconnaissance d'images, la classification, et la détection d'objets. 
+Les réseaux de neurones convolutifs (CNN) sont une classe de réseaux de neurones artificiels principalement utilisés pour l'analyse d'images. Ils sont inspirés par le cortex visuel des animaux et sont particulièrement efficaces pour des tâches telles que la reconnaissance d'images, la classification et la détection d'objets.
 
-Un CNN traite une image sous forme de matrice de pixels : 
+Un CNN traite une image sous forme de matrice de pixels :
 
 | ![Tux_2](screenshots/tux_1.png)  | ![Tux_3](screenshots/tux_2.png)  |
 |----------------------------------|----------------------------------|
 | Image sous forme classique       | Image traitée par le CNN         |
 
-
 ### Architecture de base
 
 Un CNN est composé de plusieurs types de couches :
 
-1. **Couches de Convolution** : Appliquent des filtres (ou noyaux) pour extraire des caractéristiques locales de l'image. Chaque filtre détecte des motifs spécifiques comme les bords, les textures, etc.
-2. **Couches de Pooling** : Réduisent la dimensionnalité des données tout en conservant les informations importantes. Le pooling max est couramment utilisé, où la valeur maximale d'une région est conservée.
+1. **Couches de convolution** : Appliquent des filtres (ou noyaux) pour extraire des caractéristiques locales de l'image. Chaque filtre détecte des motifs spécifiques comme les bords, les textures, etc.
+2. **Couches de pooling** : Réduisent la dimensionnalité des données tout en conservant les informations importantes. Le pooling max est couramment utilisé, où la valeur maximale d'une région est conservée.
 3. **Couches Fully Connected (FC)** : Après plusieurs couches de convolution et de pooling, les données sont aplaties et passées à travers des couches entièrement connectées pour la classification finale.
 
-
-Voici un exemple de filtres (noyaux ou kernel en anglais) classiques pouvant etre utilisés par un CNN : 
+Voici un exemple de filtres (noyaux ou *kernels* en anglais) classiques pouvant être utilisés par un CNN :
 
 | ![Tux_2](screenshots/tux_3.png)                                                | ![Tux_3](screenshots/tux_4.png)                                                  |
 |--------------------------------------------------------------------------------|----------------------------------------------------------------------------------|
@@ -43,17 +42,16 @@ Exemple pour appliquer une matrice de filtre sur une image en Python :
 Applique un filtre mettant en évidence les traits verticaux
 '''
 def filtre_2(image_nb):
-	kernel = np.matrix([[-10,0,10],[-10,0,10],[-10,0,10]])
-	print(kernel)
-	img_1 = cv2.filter2D(image_nb, -1, kernel)
-	plt.axis('off')
-	plt.imshow(cv2.cvtColor(img_1, cv2.COLOR_BGR2RGB))
-	plt.show()
-
+    kernel = np.matrix([[-10,0,10],[-10,0,10],[-10,0,10]])
+    print(kernel)
+    img_1 = cv2.filter2D(image_nb, -1, kernel)
+    plt.axis('off')
+    plt.imshow(cv2.cvtColor(img_1, cv2.COLOR_BGR2RGB))
+    plt.show()
 ```
-Il existe un fabuleux site expliquant de manière interactive cela : https://setosa.io/ev/image-kernels/
+Il existe un fabuleux site expliquant cela de manière interactive : [Setosa.io](https://setosa.io/ev/image-kernels/)
 
-> **C'est ici que réside tout l'interet des CNN, les valeurs des filtres sont apprises pendant l'entraînement. Le réseau ajuste automatiquement ces valeurs pour extraire les caractéristiques les plus pertinentes pour la tâche donnée.**
+> **C'est ici que réside tout l'intérêt des CNN : les valeurs des filtres sont apprises pendant l'entraînement. Le réseau ajuste automatiquement ces valeurs pour extraire les caractéristiques les plus pertinentes pour la tâche donnée.**
 
 ### Fonctionnement
 
@@ -64,19 +62,23 @@ Il existe un fabuleux site expliquant de manière interactive cela : https://set
 5. **Fully Connected Layers** : Effectuent la classification finale en utilisant les caractéristiques extraites.
 6. **Sortie** : Produit une probabilité pour chaque classe possible.
 
-> Je ne détaillerais pas chacune de ses étapes car cela releve de connaissances que je n'ai pas encore entièrement aqcuises.
+> _Je ne détaillerai pas chacune de ces étapes, car cela relève de connaissances que je n'ai pas encore entièrement acquises._
 
-### Entrainement 
+### Entraînement
 
-Afin d'obtenir un modèle de CNN fonctionnel il est nécessaire d'entrainer ce dernier sur de grand jeux de données nommées datasets. On peut trouver des datasets sur internet tel que sur [Kaggle](https://www.kaggle.com/datasets).
+Afin d'obtenir un modèle de CNN fonctionnel, il est nécessaire d'entraîner ce dernier sur de grands jeux de données nommés *datasets*. On peut trouver des *datasets* sur Internet, notamment sur [Kaggle](https://www.kaggle.com/datasets).
 
+Les programmes d'entraînement des modèles se trouvent dans `/models`, et les modèles entraînés dans `/trained_models`.
 
-Les programmes d'entrainements des modèles sont dans `/models` et les modèles entrainés sont dans `/trained_models`
+Vous pouvez constituer votre propre *dataset*, mais cela est une tâche assez longue. Mon application n'est pas destinée à cela. Vous devrez également créer des répertoires de validation/entraînement et modifier la structure des programmes d'entraînement que j'ai écrits.
 
-Vous pouvez constituer votre propre dataset mais cela est une tache assez longue. N'oubliez pas que + de données + efficacité de prédiction.
-Grâce a Tensorflow l'on peut accèder a des datasets directement depuis l'import de la bibliothèque.
+N'oubliez pas que **plus de données = meilleure efficacité de prédiction**.
+Grâce à TensorFlow, on peut accéder à des *datasets* directement via l'importation de la bibliothèque.
 
 ---
 ## Implémentation
-Dans mon cas, j'ai entrainé 3 modèles différent que j'ai nommées avec le dataset sur lequel ils se sont exercés. 
-Soit, **CIFAR10**, **CIFAR100** ainsi que **COCO**. Afin de constituer des CNN j'utiliserais l'un des outils des plus réputés et utilisés dans le domaine, à savoir Tensorflow. C'est un outil d'auto-apprentissage **open-source** dévelopé par Google.
+Dans mon cas, j'ai entraîné trois modèles différents que j'ai nommés d'après le *dataset* sur lequel ils ont été entraînés :
+**CIFAR10**, **CIFAR100** et **COCO**.
+
+Pour construire ces CNN, j'utiliserai l'un des outils les plus réputés et utilisés dans le domaine, à savoir **TensorFlow**. C'est un outil d'auto-apprentissage **open-source** développé par Google.
+
