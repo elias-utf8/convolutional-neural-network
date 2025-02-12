@@ -63,7 +63,7 @@ class CNN_App:
         """------ Dropdown pour choisir le modèle ------"""
         self.dataset_dropdown = ctk.CTkOptionMenu(
             master=control_frame,
-            values=["CIFAR10", "CIFAR100", "COCO", "MobilNet (recommanded)"],
+            values=["CIFAR10", "CIFAR100", "COCO (Not recommanded)", "MobilNet (recommanded)"],
             variable=self.dataset_var,
             width=200,
             fg_color="grey",
@@ -160,6 +160,9 @@ class CNN_App:
 
         if "(recommanded)" in selected_dataset:
             selected_dataset = selected_dataset[:-14]
+
+        elif "(Not recommanded)" in selected_dataset:
+            selected_dataset = selected_dataset[:-18]
 
         info_text = f"Selected dataset: {selected_dataset}\n\nInformation about {selected_dataset}..."
         self.ChangerTexte(info_text)
