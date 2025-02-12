@@ -37,8 +37,23 @@ Voici un exemple de filtres (noyaux ou kernel en anglais) classiques pouvant etr
 |--------------------------------------------------------------------------------|----------------------------------------------------------------------------------|
 | `[-10,0,10],[-10,0,10],[-10,0,10]` : Mise en évidence des traits **verticaux**.| `[10,10,10],[0,0,0],[-10,-10,-10]` : Mise en évidence des traits **horizontaux**.|
 
+Exemple pour appliquer une matrice de filtre sur une image en Python :
+```py
+'''
+Applique un filtre mettant en évidence les traits verticaux
+'''
+def filtre_2(image_nb):
+	kernel = np.matrix([[-10,0,10],[-10,0,10],[-10,0,10]])
+	print(kernel)
+	img_1 = cv2.filter2D(image_nb, -1, kernel)
+	plt.axis('off')
+	plt.imshow(cv2.cvtColor(img_1, cv2.COLOR_BGR2RGB))
+	plt.show()
 
+```
 Il existe un fabuleux site expliquant de manière interactive cela : https://setosa.io/ev/image-kernels/
+
+> **C'est ici que réside tout l'interet des CNN, les valeurs des filtres sont apprises pendant l'entraînement. Le réseau ajuste automatiquement ces valeurs pour extraire les caractéristiques les plus pertinentes pour la tâche donnée.**
 
 ### Fonctionnement
 
@@ -48,6 +63,8 @@ Il existe un fabuleux site expliquant de manière interactive cela : https://set
 4. **Flattening** : Convertit les cartes de caractéristiques en un vecteur unidimensionnel.
 5. **Fully Connected Layers** : Effectuent la classification finale en utilisant les caractéristiques extraites.
 6. **Sortie** : Produit une probabilité pour chaque classe possible.
+
+> Je ne détaillerais pas chacune de ses étapes car cela releve de connaissances que je n'ai pas encore entièrement aqcuises.
 
 ### Entrainement 
 
