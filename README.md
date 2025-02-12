@@ -28,7 +28,9 @@ Voici un exemple de filtres (noyaux ou kernel en anglais) classiques pouvant etr
 
 | ![Tux_2](screenshots/tux_3.png) | ![Tux_3](screenshots/tux_4.png) |
 |---------------------------------|---------------------------------|
-| Soit un filtre ayant pour matrice `[-10,0,10],[-10,0,10],[-10,0,10]`                          | Soit un filtre ayant pour matrice `[10,10,10],[0,0,0],[-10,-10,-10]`                            |
+| Soit un filtre ayant pour matrice
+ `[-10,0,10],[-10,0,10],[-10,0,10]`
+ qui aura pour effet de faire apparaitre les traits verticaux                          | Soit un filtre ayant pour matrice `[10,10,10],[0,0,0],[-10,-10,-10]` qui aura pour effet de faire apparaitre les traits horizontaux                           |
 
 
 Il existe un fabuleux site expliquant de manière interactive cela : https://setosa.io/ev/image-kernels/
