@@ -25,6 +25,13 @@ Un CNN est composé de plusieurs types de couches :
 2. **Couches de Pooling** : Réduisent la dimensionnalité des données tout en conservant les informations importantes. Le pooling max est couramment utilisé, où la valeur maximale d'une région est conservée.
 3. **Couches Fully Connected (FC)** : Après plusieurs couches de convolution et de pooling, les données sont aplaties et passées à travers des couches entièrement connectées pour la classification finale.
 
+
+Voici un exemple de filtres (noyaux ou kernel en anglais) classiques pouvant etre utilisés par un CNN : 
+
+| ![Tux_2](screenshots/tux_3.png) | ![Tux_3](screenshots/tux_4.png) |
+|---------------------------------|---------------------------------|
+| Texte                           | Texte                           |
+
 ### Fonctionnement
 
 1. **Entrée** : Une image est fournie en entrée sous forme de matrice de pixels.
@@ -40,6 +47,9 @@ Afin d'obtenir un modèle de CNN fonctionnel il est nécessaire d'entrainer ce d
 
 
 Les programmes d'entrainements des modèles sont dans `/models` et les modèles entrainés sont dans `/trained_models`
+
+Vous pouvez constituer votre propre dataset mais cela est une tache assez longue. N'oubliez pas que + de données + efficacité de prédiction.
+Grâce a Tensorflow l'on peut accèder a des datasets directement depuis l'import de la bibliothèque.
 
 ---
 ## Implémentation
