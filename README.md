@@ -1,7 +1,7 @@
 ![Version](https://img.shields.io/github/v/tag/elias-utf8/convolutional-neural-network?label=version&color=blue)
 
 <div align="center">
-  <img src="https://upload.wikimedia.org/wikipedia/commons/a/ab/TensorFlow_logo.svg" width="100" />
+  <img src="https://upload.wikimedia.org/wikipedia/commons/a/ab/TensorFlow_logo.svg" width="400" />
   &nbsp;&nbsp;&nbsp;
   <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Python-logo-notext.svg/1869px-Python-logo-notext.svg.png" width="100" />
 </div>
@@ -37,6 +37,7 @@ Un CNN est composé de plusieurs types de couches :
 ### Entrainement 
 
 Afin d'obtenir un modèle de CNN fonctionnel il est nécessaire d'entrainer ce dernier sur de grand jeux de données nommées datasets. On peut trouver des datasets sur internet tel que sur ![Kaggle](https://www.kaggle.com/datasets).
+
 
 Les programmes d'entrainements des modèles sont dans `/models` et les modèles entrainés sont dans `/trained_models`
 
