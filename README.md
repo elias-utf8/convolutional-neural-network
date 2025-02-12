@@ -1,5 +1,8 @@
 ![Version](https://img.shields.io/github/v/tag/elias-utf8/convolutional-neural-network?label=version&color=blue)
 
+![Tensorflow](https://upload.wikimedia.org/wikipedia/commons/a/ab/TensorFlow_logo.svg) | ![Python](https://w7.pngwing.com/pngs/140/948/png-transparent-blue-and-yellow-logo-python-logo-programmer-fierce-python-s-cdr-angle-text-thumbnail.png)
+
+<br>
 Attention : la documentation du projet est encore en cours
 # Réseau neuronal convolutif de reconaissance d'images 
 ![Aperçu de l'application](screenshots/app_screen.png)
@@ -16,6 +19,8 @@ Un CNN est composé de plusieurs types de couches :
 2. **Couches de Pooling** : Réduisent la dimensionnalité des données tout en conservant les informations importantes. Le pooling max est couramment utilisé, où la valeur maximale d'une région est conservée.
 3. **Couches Fully Connected (FC)** : Après plusieurs couches de convolution et de pooling, les données sont aplaties et passées à travers des couches entièrement connectées pour la classification finale.
 
+
+
 ### Fonctionnement
 
 1. **Entrée** : Une image est fournie en entrée sous forme de matrice de pixels.
@@ -24,8 +29,6 @@ Un CNN est composé de plusieurs types de couches :
 4. **Flattening** : Convertit les cartes de caractéristiques en un vecteur unidimensionnel.
 5. **Fully Connected Layers** : Effectuent la classification finale en utilisant les caractéristiques extraites.
 6. **Sortie** : Produit une probabilité pour chaque classe possible.
-<<<<<<< Updated upstream
-=======
 
 ### Entrainement 
 
