@@ -36,7 +36,7 @@ Un CNN est composé de plusieurs types de couches :
 
 ### Entrainement 
 
-Afin d'obtenir un modèle de CNN fonctionnel il est nécessaire d'entrainer ce dernier sur de grand jeux de données nommées datasets. On peut trouver des datasets sur internet tel que sur ![Kaggle](https://www.kaggle.com/datasets).
+Afin d'obtenir un modèle de CNN fonctionnel il est nécessaire d'entrainer ce dernier sur de grand jeux de données nommées datasets. On peut trouver des datasets sur internet tel que sur [Kaggle](https://www.kaggle.com/datasets).
 
 
 Les programmes d'entrainements des modèles sont dans `/models` et les modèles entrainés sont dans `/trained_models`
