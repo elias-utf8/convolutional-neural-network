@@ -3,13 +3,11 @@
 
 <div align="center">
   <img src="https://upload.wikimedia.org/wikipedia/commons/a/ab/TensorFlow_logo.svg" width="350" style="vertical-align: middle" />
-  &nbsp;&nbsp;&nbsp;
-  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/c/c3/Python-logo-notext.svg/1869px-Python-logo-notext.svg.png" width="150" style="vertical-align: middle" />
 </div>
 
 <br>
 
-***Attention : la documentation du projet est encore en cours***
+*Attention : la documentation du projet est encore en cours*
 
 ![Aperçu de l'application](screenshots/app_screen.png)
 
@@ -30,7 +28,10 @@ Voici un exemple de filtres (noyaux ou kernel en anglais) classiques pouvant etr
 
 | ![Tux_2](screenshots/tux_3.png) | ![Tux_3](screenshots/tux_4.png) |
 |---------------------------------|---------------------------------|
-| Texte                           | Texte                           |
+| Soit un filtre ayant pour matrice `[-10,0,10],[-10,0,10],[-10,0,10]`                          | Soit un filtre ayant pour matrice `[10,10,10],[0,0,0],[-10,-10,-10]`                            |
+
+
+Il existe un fabuleux site expliquant de manière interactive cela : https://setosa.io/ev/image-kernels/
 
 ### Fonctionnement
 
@@ -53,4 +54,4 @@ Grâce a Tensorflow l'on peut accèder a des datasets directement depuis l'impor
 
 ---
 ## Implémentation
-Dans mon cas, j'ai entrainé 3 modèles différent que j'ai nommées avec le dataset sur lequel ils se sont exercés. Soit, CIFAR10, CIFAR100 ainsi que COCO. 
+Dans mon cas, j'ai entrainé 3 modèles différent que j'ai nommées avec le dataset sur lequel ils se sont exercés. Soit, **CIFAR10**, **CIFAR100** ainsi que **COCO**. Afin de constituer des CNN j'utiliserais l'un des outils des plus réputés et utilisés dans le domaine, à savoir Tensorflow. C'est un outil d'auto-apprentissage **open-source** dévelopé par Google.
