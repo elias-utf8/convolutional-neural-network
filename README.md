@@ -13,7 +13,14 @@
 
 ## Introduction aux CNN
 
-Les réseaux de neurones convolutifs (CNN) sont une classe de réseaux de neurones artificiels principalement utilisés pour l'analyse d'images. Ils sont inspirés par le cortex visuel des animaux et sont particulièrement efficaces pour des tâches telles que la reconnaissance d'images, la classification, et la détection d'objets.
+Les réseaux de neurones convolutifs (CNN) sont une classe de réseaux de neurones artificiels principalement utilisés pour l'analyse d'images. Ils sont inspirés par le cortex visuel des animaux et sont particulièrement efficaces pour des tâches telles que la reconnaissance d'images, la classification, et la détection d'objets. 
+
+Un CNN traite une image sous forme de matrice de pixels : 
+
+| ![Tux_2](screenshots/tux_1.png)  | ![Tux_3](screenshots/tux_2.png)  |
+|----------------------------------|----------------------------------|
+| Image sous forme classique       | Image traitée par le CNN         |
+
 
 ### Architecture de base
 
@@ -54,4 +61,5 @@ Grâce a Tensorflow l'on peut accèder a des datasets directement depuis l'impor
 
 ---
 ## Implémentation
-Dans mon cas, j'ai entrainé 3 modèles différent que j'ai nommées avec le dataset sur lequel ils se sont exercés. Soit, **CIFAR10**, **CIFAR100** ainsi que **COCO**. Afin de constituer des CNN j'utiliserais l'un des outils des plus réputés et utilisés dans le domaine, à savoir Tensorflow. C'est un outil d'auto-apprentissage **open-source** dévelopé par Google.
+Dans mon cas, j'ai entrainé 3 modèles différent que j'ai nommées avec le dataset sur lequel ils se sont exercés. 
+Soit, **CIFAR10**, **CIFAR100** ainsi que **COCO**. Afin de constituer des CNN j'utiliserais l'un des outils des plus réputés et utilisés dans le domaine, à savoir Tensorflow. C'est un outil d'auto-apprentissage **open-source** dévelopé par Google.
