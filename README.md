@@ -1,8 +1,7 @@
 ![Version](https://img.shields.io/github/v/tag/elias-utf8/convolutional-neural-network?label=version&color=blue)
+Attention : la documentation du projet est encore en cours
 # Réseau neuronal convolutif de reconaissance d'images 
 ![Aperçu de l'application](screenshots/app_screen.png)
-
-La documentation de projet est encore en cours.
 
 ## Introduction aux CNN
 
