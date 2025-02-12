@@ -2,6 +2,8 @@
 # Réseau neuronal convolutif de reconaissance d'images 
 ![Aperçu de l'application](screenshots/app_screen.png)
 
+La documentation de projet est encore en cours.
+
 ## Introduction aux CNN
 
 Les réseaux de neurones convolutifs (CNN) sont une classe de réseaux de neurones artificiels principalement utilisés pour l'analyse d'images. Ils sont inspirés par le cortex visuel des animaux et sont particulièrement efficaces pour des tâches telles que la reconnaissance d'images, la classification, et la détection d'objets.
@@ -22,3 +24,15 @@ Un CNN est composé de plusieurs types de couches :
 4. **Flattening** : Convertit les cartes de caractéristiques en un vecteur unidimensionnel.
 5. **Fully Connected Layers** : Effectuent la classification finale en utilisant les caractéristiques extraites.
 6. **Sortie** : Produit une probabilité pour chaque classe possible.
+<<<<<<< Updated upstream
+=======
+
+### Entrainement 
+
+Afin d'obtenir un modèle de CNN fonctionnel il est nécessaire d'entrainer ce dernier sur de grand jeux de données nommées datasets. On peut trouver des datasets sur internet tel que sur ![Kaggle](https://www.kaggle.com/datasets).
+
+Les programmes d'entrainements des modèles sont dans `/models` et les modèles entrainés sont dans `/trained_models`
+---
+## Implémentation
+Dans mon cas, j'ai entrainé 3 modèles différent que j'ai nommées avec le dataset sur lequel ils se sont exercés. Soit, CIFAR10, CIFAR100 ainsi que COCO. 
+>>>>>>> Stashed changes

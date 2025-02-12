@@ -92,4 +92,4 @@ cifar10_classes = [
     'chien', 'grenouille', 'cheval', 'bateau', 'camion'
 ]
 
-model.save('cifar10_model.h5')
+model.save('trained_models/cifar10_model.h5')

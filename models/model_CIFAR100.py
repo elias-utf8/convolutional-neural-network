@@ -120,4 +120,4 @@ cifar100_classes = [
     'worm', 'truck'
 ]
 
-model.save('models/cifar100_model.h5')
+model.save('trained_models/cifar100_model.h5')

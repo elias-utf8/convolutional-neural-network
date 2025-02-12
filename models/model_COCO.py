@@ -85,4 +85,4 @@ plt.legend()
 plt.tight_layout()
 plt.show()
 
-model.save('models/coco_model.h5')
+model.save('trained_models/coco_model.h5')
