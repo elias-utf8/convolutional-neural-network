@@ -1,6 +1,6 @@
 # Réseau neuronal convolutif de reconaissance d'images 
 ---
-![Aperçu de l'application](screenshots/app_screen_png)
+![Aperçu de l'application](screenshots/app_screen.png)
 
 ## Introduction aux CNN
 
