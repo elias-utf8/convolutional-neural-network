@@ -1,5 +1,10 @@
 ![Version](https://img.shields.io/github/v/tag/elias-utf8/convolutional-neural-network?label=version&color=blue)
 # Réseau neuronal convolutif de reconnaissance d'images
+
+<div align="center">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/a/ab/TensorFlow_logo.svg" width="350" style="vertical-align: middle" />
+</div>
+
 <br>
 
 *La documentation du projet est encore en cours. Ceci n'est qu'un survol du vaste monde du ML et des CNN. Toutes ces informations sont disponibles sur Internet.*
@@ -67,17 +72,87 @@ Les programmes d'entraînement des modèles se trouvent dans `/models`, et les m
 Vous pouvez constituer votre propre *dataset*, mais cela est une tâche assez longue. Mon application n'est pas destinée à cela. Vous devrez également créer des répertoires de validation/entraînement et modifier la structure des programmes d'entraînement que j'ai écrits.
 
 N'oubliez pas que **plus de données = meilleure efficacité de prédiction**.
-Grâce à TensorFlow, on peut accéder à des *datasets* directement via l'importation de la bibliothèque.
+
+Pour construire ces CNN, j'utiliserai l'un des outils les plus réputés et utilisés dans le domaine, à savoir **TensorFlow**. C'est un outil d'auto-apprentissage **open-source** développé par Google.
 
 Exemple pour le dataset [CIFAR10](https://www.cs.toronto.edu/~kriz/cifar.html) : 
 ```py
 from tensorflow.keras.datasets import cifar10
 ```
-
----
-## Implémentation
 Dans mon cas, j'ai entraîné trois modèles différents que j'ai nommés d'après le *dataset* sur lequel ils ont été entraînés :
 **CIFAR10**, **CIFAR100** et **COCO**.
 
-Pour construire ces CNN, j'utiliserai l'un des outils les plus réputés et utilisés dans le domaine, à savoir **TensorFlow**. C'est un outil d'auto-apprentissage **open-source** développé par Google.
+---
+## Usage
+
+<h3> Pour entraîner un modèle sur votre propre machine</h3>
+
+*dans /models*
+
+```zsh
+python model_CIFAR10.py # Exemple avec CIFAR10
+```
+> Le modèle sera sauvegardé dans `/trained_models`
+
+| ![Tux_2](screenshots/train.png)                                                |
+|--------------------------------------------------------------------------------|
+| Courbes représentants l'évolution des erreurs et succès lors de l'entrainement |
+
+Vous devrez ensuite écrire la classe d'exploitation du programme sous */predict* ayant comme méthodes `predict_image()` et `summary()` : 
+```py
+    def summary(self):
+        buffer = io.StringIO()
+        self.model.summary(print_fn=lambda x: buffer.write(x + '\n'))
+        return buffer.getvalue()
+
+    def predict_image(self, image_path):
+        img_array = preprocess_image(image_path, target_size=(32, 32))
+        predictions = self.model.predict(img_array)
+        predicted_class_index = np.argmax(predictions, axis=1)[0]
+        predicted_class = self.cifar10_classes[predicted_class_index]
+        confidence = predictions[0][predicted_class_index]
+        return predicted_class, confidence
+```
+> Il sera certainement nécessaire d'adapter ces méthodes selon les caractéristiques de votre modèle.
+
+Enfin dans `app.py` vous pourrez importer votre classe de modèle et écrire le code nécessaire
+```py
+from predict.CIFAR10 import CIFAR10Predictor
+from predict.CIFAR100 import CIFAR100Predictor
+from predict.COCO import COCOPredictor
+from predict.MOBILNET import MobileNetPredictor
+# Ajout de votre classe : from predict.MODELE import ModelePredictor
+
+```
+
+```py
+        self.dataset_dropdown = ctk.CTkOptionMenu(
+            master=control_frame,
+            values=["CIFAR10", "CIFAR100", "COCO (Not recommanded)", "MobilNet (recommanded)"], # Ajout de l'option pour sélectionner votre modèle ["Votre modele"]
+            variable=self.dataset_var,
+            width=200,
+            fg_color="grey",
+            button_color="grey",
+            text_color="white"
+        )
+```
+```py
+    def ChargerMODELE(self): 
+        self.predictor = None
+        self.predictor = ModelePredictor()
+        self.ChangerTexte(self.predictor.summary())
+    """
+    ...
+
+    """
+    if selected_dataset == "CIFAR10":
+      self.Charger_CIFAR10()
+```
+Votre modèle entrainé est près a etre utilisé!
+
+<h3> Enfin, pour lancer l'application</h3>
+
+```zsh
+python app.py 
+```
 
