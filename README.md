@@ -151,8 +151,8 @@ from predict.MOBILNET import MobileNetPredictor
     ...
 
     """
-    if selected_dataset == "CIFAR10":
-      self.Charger_CIFAR10()
+    if selected_dataset == "Votre modele":
+      self.Charger_MODELE()
 ```
 Votre modèle entrainé est prêt a etre utilisé!
 
