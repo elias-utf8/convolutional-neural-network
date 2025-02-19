@@ -65,7 +65,7 @@ Afin d'obtenir un modèle de CNN fonctionnel, il est nécessaire d'entraîner ce
 
 Les programmes d'entraînement des modèles se trouvent dans `/models`, et les modèles entraînés dans `/trained_models`.
 
-Vous pouvez constituer votre propre *dataset*, mais cela est une tâche assez longue. Mon application n'est pas destinée à cela. Vous devrez également créer des répertoires de validation/entraînement et modifier la structure des programmes d'entraînement que j'ai écrits.
+Vous pouvez constituer votre propre *dataset*, mais cela est une tâche assez longue. Mon application n'est pas destinée premièrement à cela. J'explique cependant plus bas comment modifier correctement le code source de l'application et comment écrire les classes de modèles.
 
 N'oubliez pas que **plus de données = meilleure efficacité de prédiction**.
 
@@ -77,9 +77,6 @@ from tensorflow.keras.datasets import cifar10
 ```
 Dans mon cas, j'ai entraîné trois modèles différents que j'ai nommés d'après le *dataset* sur lequel ils ont été entraînés :
 **CIFAR10**, **CIFAR100** et **COCO**.
-
----
-## Usage
 
 <h3> Pour entraîner un modèle sur votre propre machine</h3>
 
@@ -94,7 +91,20 @@ python model_CIFAR10.py # Exemple avec CIFAR10
 |--------------------------------------------------------------------------------|
 | Courbes représentants l'évolution des erreurs et succès lors de l'entrainement |
 
-Vous devrez ensuite écrire la classe d'exploitation du programme sous */predict* ayant comme méthodes `predict_image()` et `summary()` : 
+---
+### Installation et usage
+
+```zsh
+git clone https://github.com/elias-utf8/convolutional-neural-network.git
+cd convolutional-neural-network
+pip install -r requirements.txt
+python app.py 
+```
+---
+### Pour aller plus loin
+
+Si vous avez créer votre propre CNN et entrainé votre modèle, vous devrez ensuite écrire la classe d'exploitation du modèle sous */predict* ayant comme méthodes `predict_image()` et `summary()` pour le faire fonctionner sur l'application :
+
 ```py
     def summary(self):
         buffer = io.StringIO()
@@ -144,11 +154,5 @@ from predict.MOBILNET import MobileNetPredictor
     if selected_dataset == "CIFAR10":
       self.Charger_CIFAR10()
 ```
-Votre modèle entrainé est près a etre utilisé!
-
-<h3> Enfin, pour lancer l'application</h3>
-
-```zsh
-python app.py 
-```
+Votre modèle entrainé est prêt a etre utilisé!
 

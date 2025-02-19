@@ -1,4 +1,6 @@
 customtkinter
 pillow
+numpy
+matplotlib
 tensorflow
 ctkmessagebox
