@@ -1,12 +1,6 @@
 ![Version](https://img.shields.io/github/v/tag/elias-utf8/convolutional-neural-network?label=version&color=blue)
 # Réseau neuronal convolutif de reconnaissance d'images
-
-<div align="center">
-  <img src="https://upload.wikimedia.org/wikipedia/commons/a/ab/TensorFlow_logo.svg" width="350" style="vertical-align: middle" />
-</div>
-
 <br>
-
 *La documentation du projet est encore en cours. Ceci n'est qu'un survol du vaste monde du ML et des CNN. Toutes ces informations sont disponibles sur Internet.*
 
 ![Aperçu de l'application](screenshots/app_screen.png)
