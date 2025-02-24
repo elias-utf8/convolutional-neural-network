@@ -101,7 +101,7 @@ python app.py
 ---
 ### Pour aller plus loin
 
-Si vous avez créer votre propre CNN et entrainé votre modèle, vous devrez ensuite écrire la classe d'exploitation du modèle sous */predict* ayant comme méthodes `predict_image()` et `summary()` pour le faire fonctionner sur l'application :
+Si vous avez créé votre propre CNN et entraîné votre modèle, vous devrez ensuite écrire la classe d'exploitation du modèle sous */predict* ayant comme méthodes `predict_image()` et `summary()` pour le faire fonctionner sur l'application :
 
 ```py
     def summary(self):
