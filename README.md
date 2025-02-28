@@ -1,4 +1,5 @@
 ![Version](https://img.shields.io/github/v/tag/elias-utf8/convolutional-neural-network?label=version&color=blue)
+<img alt="tensorflow" src="https://img.shields.io/badge/TensorFlow-%23FF6F00.svg?&logo=TensorFlow&logoColor=white">
 # Réseau neuronal convolutif de reconnaissance d'images
 
 <br>
